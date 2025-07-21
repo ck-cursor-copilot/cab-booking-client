@@ -157,6 +157,8 @@ const BookRide = () => {
 
       const response = await api.createBooking(bookingData);
       
+      const booking = response.data;
+      
       toast.success('Booking created successfully! Looking for a driver...');
       navigate('/dashboard');
     } catch (error) {

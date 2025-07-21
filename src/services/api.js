@@ -47,8 +47,8 @@ export const getRideHistory = (userId) => api.get(`/user/ride-history/${userId}`
 
 // Booking API Functions
 export const createBooking = (bookingData) => api.post('/bookings', bookingData);
-export const getUserBookings = () => api.get('/bookings/user');
-export const getDriverBookings = () => api.get('/bookings/driver');
+export const getUserBookings = () => api.get('/bookings/user').then(response => response.data);
+export const getDriverBookings = () => api.get('/bookings/driver').then(response => response.data);
 export const acceptBooking = (bookingId) => api.post(`/bookings/${bookingId}/accept`);
 export const startTrip = (bookingId) => api.post(`/bookings/${bookingId}/start`);
 export const completeTrip = (bookingId) => api.post(`/bookings/${bookingId}/complete`);
@@ -62,7 +62,7 @@ export const getDriverCabs = (driverId) => api.get(`/cabs/driver/${driverId}`);
 export const updateCabStatus = (cabId, status) => api.put(`/cabs/${cabId}/status`, { status });
 
 // Driver API Functions
-export const toggleAvailability = (driverId, isAvailable) => 
+export const toggleAvailability = (isAvailable, driverId) => 
   api.put(`/driver/availability/${driverId}`, { isAvailable });
 export const getCurrentTrip = (driverId) => api.get(`/driver/current-trip/${driverId}`);
 export const getDriverEarnings = (driverId) => api.get(`/driver/earnings/${driverId}`);
